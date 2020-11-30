@@ -6,21 +6,20 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalhouse.desafio.R
-import com.digitalhouse.desafio.services.service
+import com.digitalhouse.desafio.services.repository
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var itemAdapter: ItemAdapter
-    private lateinit var lManager: GridLayoutManager
-    var page: Int = 1
 
-    private val viewModel by viewModels<MainViewModel>{
+    private lateinit var itemAdapter: ItemAdapter
+    private lateinit var gridLayoutManager: GridLayoutManager
+
+    val viewModel by viewModels<MainViewModel>{
         object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MainViewModel(service) as T
+                return MainViewModel(repository) as T
             }
         }
     }
@@ -29,12 +28,11 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        lManager = GridLayoutManager(this, 3)
-        rvHQ.layoutManager = lManager
-
         itemAdapter = ItemAdapter()
+        gridLayoutManager = GridLayoutManager(this, 3)
+        rvHQ.layoutManager = gridLayoutManager
         rvHQ.adapter = itemAdapter
-
+        rvHQ.hasFixedSize()
 
         viewModel.listaHQ.observe(this){
             itemAdapter.addHQ(it)
@@ -50,14 +48,15 @@ class HomeActivity : AppCompatActivity() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
-                    val itensVisible = lManager?.childCount
-                    val pastItens = lManager.findFirstVisibleItemPosition()
-                    var total = itemAdapter?.itemCount
-
-                    if (itensVisible + pastItens == total) {
-                        page++
-                        viewModel.getAll()
+                    if (dy > 0){
+                        var litem = itemAdapter?.itemCount
+                        val vItem = gridLayoutManager.findFirstVisibleItemPosition()
+                        val itens = itemAdapter.itemCount
+                        if (litem + vItem >= itens){
+                            viewModel.getAll()
+                        }
                     }
+//                    val itensVisible = gridLayoutManager?.childCount
                 }
             })
         }
