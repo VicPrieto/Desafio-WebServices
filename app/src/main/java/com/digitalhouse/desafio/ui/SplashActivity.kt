@@ -1,8 +1,13 @@
 package com.digitalhouse.desafio.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.digitalhouse.desafio.R
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
@@ -10,5 +15,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        GlobalScope.launch {
+            delay(3000)
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            finish()
+        }
     }
+
 }

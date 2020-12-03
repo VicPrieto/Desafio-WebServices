@@ -40,24 +40,38 @@
             
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white">
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:textColorHint="@color/red_light">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"/>
+                    android:background="#00FFFFFF"
+                    android:backgroundTint="#00FFFFFF"
+                    android:hint="Name"
+                    android:inputType="textEmailAddress"
+                    android:paddingTop="35dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/black"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white">
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:textColorHint="@color/red_light">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:background="#00FFFFFF"
+                    android:backgroundTint="#00FFFFFF"
+                    android:paddingTop="35dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/black"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
@@ -81,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Account"
+                android:textColor="@color/gray"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:paddingTop="10dp"/>

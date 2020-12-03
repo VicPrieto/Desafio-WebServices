@@ -13,8 +13,9 @@ interface Repository {
         @Query("offset") p1: Int,
         @Query("limit") p2: Int,
         @Query("ts") p3: Int,
-        @Query("apikey") p4: String,
-        @Query("hash") p5: String,
+        @Query("orderBy") p4: String,
+        @Query("apikey") p5: String,
+        @Query("hash") p6: String
     ): Msg
 }
 
@@ -27,5 +28,13 @@ val retrofit = Retrofit.Builder()
 
 val repository: Repository = retrofit.create(Repository::class.java)
 
-//https://gateway.marvel.com:443/v1/public/characters/1009610/comics?
-// apikey=35ad1d6a890da5ea66ebdf44e423d42c
+//https://gateway.marvel.com/v1/public/characters/1009610/comics?ts=1&orderBy=focDate&limit=10&offset=1&apikey=c70e158b477c5ee33c838850e91a0be0&hash=90daceab9123b6f475d9ffeeea6ad19f
+
+//PUBLIC KEY
+//c70e158b477c5ee33c838850e91a0be0
+
+//PRIVATE KEY
+//d427f5a8db234bc02d1ffd9203d7fadb13254878
+
+//HASH
+//90daceab9123b6f475d9ffeeea6ad19f

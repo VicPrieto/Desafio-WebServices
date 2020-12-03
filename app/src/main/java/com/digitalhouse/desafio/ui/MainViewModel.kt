@@ -19,8 +19,9 @@ class MainViewModel (val service: Repository): ViewModel() {
                     1,
                     10,
                     1,
-                    "35ad1d6a890da5ea66ebdf44e423d42c",
-                    "40a3aa568bb269dfad85ae0c4a297181"
+                    "focDate",
+                    "c70e158b477c5ee33c838850e91a0be0",
+                    "90daceab9123b6f475d9ffeeea6ad19f"
                 ).toString()
             )
         }

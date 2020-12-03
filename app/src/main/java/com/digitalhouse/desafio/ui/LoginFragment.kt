@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.digitalhouse.desafio.R
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class LoginFragment : Fragment() {
@@ -16,22 +17,21 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater!!.inflate(R.layout.fragment_login, container, false)
-
-        view.tv_register.setOnClickListener{
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
-
-        view.btn_login.setOnClickListener{
-            callHome()
-        }
-
-        return view
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-    fun callHome(){
-        var intent = Intent(SplashActivity(), HomeActivity::class.java)
-        startActivity(intent)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        tv_register.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+        btn_login.setOnClickListener {
+            val intent = Intent(requireActivity(), HomeActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
     }
 
 }

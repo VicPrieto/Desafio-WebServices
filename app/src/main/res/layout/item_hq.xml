@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="@color/blue">
 
-
     <ImageView
         android:id="@+id/iv_thumbnail"
         android:layout_width="100dp"
@@ -16,6 +15,7 @@
         android:scaleType="centerCrop"/>
 
     <TextView
+        android:id="@+id/tv_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="#91"
