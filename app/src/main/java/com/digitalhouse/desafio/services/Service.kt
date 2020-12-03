@@ -1,6 +1,6 @@
 package com.digitalhouse.desafio.services
 
-import com.digitalhouse.desafio.models.Msg
+import com.digitalhouse.desafio.models.HQ
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -10,13 +10,13 @@ interface Repository {
 
     @GET("comics")
     suspend fun getResults(
-        @Query("offset") p1: Int,
-        @Query("limit") p2: Int,
-        @Query("ts") p3: Int,
+        @Query("offset") p1: String,
+        @Query("limit") p2: String,
+        @Query("ts") p3: String,
         @Query("orderBy") p4: String,
         @Query("apikey") p5: String,
         @Query("hash") p6: String
-    ): Msg
+    ): HQ
 }
 
 val urlApiMarvel = "https://gateway.marvel.com/v1/public/characters/1009610/"

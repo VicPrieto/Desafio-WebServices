@@ -10,20 +10,28 @@ import com.digitalhouse.desafio.services.repository
 import kotlinx.coroutines.launch
 
 class MainViewModel (val service: Repository): ViewModel() {
-    val listaHQ = MutableLiveData<ArrayList<HQ>>()
+    var list = MutableLiveData<HQ>()
 
     fun getAll(){
         viewModelScope.launch {
-            Log.i(
-                "TAG", repository.getResults(
-                    1,
-                    10,
-                    1,
-                    "focDate",
-                    "c70e158b477c5ee33c838850e91a0be0",
-                    "90daceab9123b6f475d9ffeeea6ad19f"
-                ).toString()
+            list.value = service.getResults(
+                "1",
+                "10",
+                "1",
+                "focDate",
+                "c70e158b477c5ee33c838850e91a0be0",
+                "90daceab9123b6f475d9ffeeea6ad19f"
             )
+//            Log.i(
+//                "TAG", repository.getResults(
+//                    1,
+//                    10,
+//                    1,
+//                    "focDate",
+//                    "c70e158b477c5ee33c838850e91a0be0",
+//                    "90daceab9123b6f475d9ffeeea6ad19f"
+//                ).toString()
+//            )
         }
     }
 }

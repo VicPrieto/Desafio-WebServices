@@ -8,13 +8,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalhouse.desafio.R
+import com.digitalhouse.desafio.models.HQ
 import com.digitalhouse.desafio.services.repository
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), ItemAdapter.OnComicClickListener {
 
-    private lateinit var itemAdapter: ItemAdapter
-    private lateinit var gridLayoutManager: GridLayoutManager
+    lateinit var itemAdapter: ItemAdapter
+    lateinit var gridLayoutManager: GridLayoutManager
+    lateinit var listHQ: HQ
 
     val viewModel by viewModels<MainViewModel>{
         object : ViewModelProvider.Factory{
@@ -28,38 +30,43 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        itemAdapter = ItemAdapter()
         gridLayoutManager = GridLayoutManager(this, 3)
         rvHQ.layoutManager = gridLayoutManager
-        rvHQ.adapter = itemAdapter
         rvHQ.hasFixedSize()
 
-        viewModel.listaHQ.observe(this){
-            itemAdapter.addHQ(it)
+        viewModel.list.observe(this){
+            itemAdapter = ItemAdapter(it, this)
+            listHQ = it
+            rvHQ.adapter = itemAdapter
         }
 
         viewModel.getAll()
-        setScrollView()
+//        setScrollView()
     }
 
-    private fun setScrollView(){
-        rvHQ.run {
-            addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
+    override fun comicClick(position: Int) {
+//        val hq = MainFragmentDirections.actionMainFragmentToComicDetailFragment(listHQ.data.results[position])
+//        findNavController().navigate(comic)
+    }
 
-                    if (dy > 0){
-                        var litem = itemAdapter?.itemCount
-                        val vItem = gridLayoutManager.findFirstVisibleItemPosition()
-                        val itens = itemAdapter.itemCount
-                        if (litem + vItem >= itens){
-                            viewModel.getAll()
-                        }
-                    }
+//    private fun setScrollView(){
+//        rvHQ.run {
+//            addOnScrollListener(object : RecyclerView.OnScrollListener(){
+//                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                    super.onScrolled(recyclerView, dx, dy)
+//
+//                    if (dy > 0){
+//                        var litem = itemAdapter?.itemCount
+//                        val vItem = gridLayoutManager.findFirstVisibleItemPosition()
+//                        val itens = itemAdapter.itemCount
+//                        if (litem + vItem >= itens){
+//                            viewModel.getAll()
+//                        }
+//                    }
 //                    val itensVisible = gridLayoutManager?.childCount
-                }
-            })
-        }
-
-    }
+//                }
+//            })
+//        }
+//
+//    }
 }

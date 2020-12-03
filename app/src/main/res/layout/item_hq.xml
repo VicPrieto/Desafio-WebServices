@@ -4,13 +4,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/blue">
+    android:background="@color/blue"
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/iv_thumbnail"
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_weight="1"
+        android:padding="5dp"
+        android:background="@color/white"
         app:srcCompat="@drawable/splash"
         android:scaleType="centerCrop"/>
 

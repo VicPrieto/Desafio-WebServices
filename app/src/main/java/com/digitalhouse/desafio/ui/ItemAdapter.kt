@@ -9,18 +9,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.digitalhouse.desafio.R
 import com.digitalhouse.desafio.models.HQ
 import com.squareup.picasso.Picasso
-import java.util.ArrayList
 
-class ItemAdapter (): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
-    val listHQ = ArrayList<HQ>()
+class ItemAdapter(val listaHQ: HQ, val listener: OnComicClickListener) :
+    RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         val ivThumbnail: ImageView = itemView.findViewById(R.id.iv_thumbnail)
         val tvId: TextView = itemView.findViewById(R.id.tv_id)
 
-        override fun onClick(p0: View?) {
-            TODO("Not yet implemented")
+        init {
+            itemView.setOnClickListener(this)
         }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+
+            if (RecyclerView.NO_POSITION != position) {
+                listener.comicClick(position)
+            }
+        }
+    }
+
+    interface OnComicClickListener {
+        fun comicClick(position: Int)
 
     }
 
@@ -30,23 +42,13 @@ class ItemAdapter (): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val hq: HQ = listHQ.get(position)
+        val hq = listaHQ.data.results[position]
         val thumbURL = "${hq.thumbnail.path}.${hq.thumbnail.extension}"
-        val tvId = hq.id
+        holder.tvId.text = hq.id.toString()
 
         Picasso.get().load(thumbURL).fit().centerCrop().into(holder.ivThumbnail)
-
     }
 
-    override fun getItemCount() = listHQ.size
+    override fun getItemCount() = listaHQ.data.results.size
 
-    fun addHQ(items: ArrayList<HQ>){
-        listHQ.addAll(items)
-        notifyDataSetChanged()
-    }
-
-    fun clear(){
-        listHQ.clear()
-        notifyDataSetChanged()
-    }
 }
