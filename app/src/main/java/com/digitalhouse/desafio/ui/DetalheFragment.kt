@@ -7,17 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.digitalhouse.desafio.R
-import com.digitalhouse.desafio.models.HQ
 import com.digitalhouse.desafio.models.Results
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detalhe.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.home_toolbar
 
 class DetalheFragment : Fragment() {
 
@@ -44,6 +39,9 @@ class DetalheFragment : Fragment() {
         val thumbURL = "${results.thumbnail.path}.${results.thumbnail.extension}"
         Picasso.get().load(thumbURL).fit().centerCrop().into(thumb)
 
+        val backg = view.findViewById<ImageView>(R.id.iv_backg)
+        Picasso.get().load(thumbURL).fit().centerCrop().into(backg)
+
         val desc = view.findViewById<TextView>(R.id.tv_descrip)
         desc.text = results.description
 
@@ -56,7 +54,7 @@ class DetalheFragment : Fragment() {
         val pages = view.findViewById<TextView>(R.id.tv_pages)
         pages.text = "Pages: " + results.pageCount
 
-        iv_character.setOnClickListener{
+        iv_thumbnail_detalhe.setOnClickListener{
             val bundle = bundleOf("thumb" to thumbURL)
             findNavController().navigate(R.id.action_detalheFragment_to_fullscreenFragment, bundle)
         }

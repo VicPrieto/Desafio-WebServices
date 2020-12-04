@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
-                    android:backgroundTint="#00FFFFFF"
+                    android:backgroundTint="@color/red_light"
                     android:hint="Name"
                     android:inputType="textEmailAddress"
                     android:paddingTop="35dp"
@@ -68,7 +68,7 @@
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:background="#00FFFFFF"
-                    android:backgroundTint="#00FFFFFF"
+                    android:backgroundTint="@color/red_light"
                     android:paddingTop="35dp"
                     android:paddingBottom="0dp"
                     android:textColor="@color/black"/>
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="Create Account"
                 android:textColor="@color/gray"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="10dp"/>
 

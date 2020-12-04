@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import com.digitalhouse.desafio.R
 import com.digitalhouse.desafio.models.Thumbnail
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_fullscreen.*
 
 class FullscreenFragment : Fragment() {
 
@@ -26,6 +28,10 @@ class FullscreenFragment : Fragment() {
         val thumb = arguments?.getString("thumb")
         val img = view.findViewById<ImageView>(R.id.iv_fullscreen)
         Picasso.get().load(thumb).fit().centerCrop().into(img)
+
+        btn_back.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }

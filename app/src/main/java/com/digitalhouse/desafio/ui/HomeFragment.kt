@@ -51,7 +51,6 @@ class HomeFragment : Fragment(), ItemAdapter.OnComicClickListener {
         }
 
         viewModel.getAll()
-//        setScrollView()
     }
 
     override fun comicClick(position: Int) {
@@ -59,31 +58,5 @@ class HomeFragment : Fragment(), ItemAdapter.OnComicClickListener {
             "hq" to listHQ.data.results[position])
 
         findNavController().navigate(R.id.action_homeFragment_to_detalheFragment, bundle)
-
-//        findNavController().navigate(R.id.action_homeFragment_to_detalheFragment)
-
-//        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetalheFragment(listHQ.data.results[position].title))
     }
-
-//    private fun setScrollView(){
-//        rvHQ.run {
-//            addOnScrollListener(object : RecyclerView.OnScrollListener(){
-//                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                    super.onScrolled(recyclerView, dx, dy)
-//
-//                    if (dy > 0){
-//                        var litem = itemAdapter?.itemCount
-//                        val vItem = gridLayoutManager.findFirstVisibleItemPosition()
-//                        val itens = itemAdapter.itemCount
-//                        if (litem + vItem >= itens){
-//                            viewModel.getAll()
-//                        }
-//                    }
-//                    val itensVisible = gridLayoutManager?.childCount
-//                }
-//            })
-//        }
-//
-//    }
-
 }
