@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.digitalhouse.desafio.ui.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_detalheFragment"
+            app:destination="@id/detalheFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalheFragment"
+        android:name="com.digitalhouse.desafio.ui.DetalheFragment"
+        android:label="fragment_detalhe"
+        tools:layout="@layout/fragment_detalhe" >
+        <action
+            android:id="@+id/action_detalheFragment_to_fullscreenFragment"
+            app:destination="@id/fullscreenFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/fullscreenFragment"
+        android:name="com.digitalhouse.desafio.ui.FullscreenFragment"
+        android:label="fragment_fullscreen"
+        tools:layout="@layout/fragment_fullscreen" >
+        <argument
+            android:name="thumb"
+            app:argType="com.digitalhouse.desafio.models.Thumbnail" />
+    </fragment>
+</navigation>

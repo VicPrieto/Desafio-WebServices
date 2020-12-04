@@ -18,7 +18,7 @@ class MainViewModel (val service: Repository): ViewModel() {
                 "1",
                 "10",
                 "1",
-                "focDate",
+                "-issueNumber",
                 "c70e158b477c5ee33c838850e91a0be0",
                 "90daceab9123b6f475d9ffeeea6ad19f"
             )

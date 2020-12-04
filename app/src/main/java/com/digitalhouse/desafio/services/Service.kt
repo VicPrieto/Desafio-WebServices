@@ -10,12 +10,12 @@ interface Repository {
 
     @GET("comics")
     suspend fun getResults(
-        @Query("offset") p1: String,
-        @Query("limit") p2: String,
-        @Query("ts") p3: String,
-        @Query("orderBy") p4: String,
-        @Query("apikey") p5: String,
-        @Query("hash") p6: String
+        @Query("offset") offset: String,
+        @Query("limit") limit: String,
+        @Query("ts") ts: String,
+        @Query("orderBy") orderBy: String,
+        @Query("apikey") apikey: String,
+        @Query("hash") hash: String
     ): HQ
 }
 

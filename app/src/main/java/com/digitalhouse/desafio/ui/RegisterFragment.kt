@@ -18,12 +18,15 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater!!.inflate(R.layout.fragment_register, container, false)
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolbar.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
 
         btn_save.setOnClickListener {
             val intent = Intent(requireActivity(), HomeActivity::class.java)
